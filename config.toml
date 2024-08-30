@@ -1,9 +1,9 @@
  [[runners]] 
   name = "Docker Runner"
-  url = "https://my.gitlab"
+  url = "https://ec2-3-90-87-4.compute-1.amazonaws.com"
   token = "YOUR_TOKEN"
   executor = "docker"
-  clone_url = "https://my.gitlab"
+  clone_url = "https://ec2-3-90-87-4.compute-1.amazonaws.com"
   [runners.docker]
     tls_verify = false
     image = "docker:stable"

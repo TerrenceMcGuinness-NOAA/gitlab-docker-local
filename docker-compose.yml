@@ -1,4 +1,3 @@
-version: "3"
 services:
     gitlab:
       image: 'gitlab/gitlab-ce:latest'
@@ -6,13 +5,13 @@ services:
       restart: always
       environment:
         GITLAB_OMNIBUS_CONFIG: |
-          external_url 'https://my.gitlab:3143'
+          external_url 'https://ec2-3-90-87-4.compute-1.amazonaws.com:3143'
           gitlab_rails['gitlab_shell_ssh_port'] = 3122
           nginx['listen_port'] = 443
           nginx['redirect_http_to_https'] = true
           nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
-          registry_external_url 'https://my.gitlab:4567'
+          registry_external_url 'https://ec2-3-90-87-4.compute-1.amazonaws.com:4567'
           registry_nginx['enable'] = true
           registry_nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           registry_nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
@@ -29,7 +28,7 @@ services:
       networks:
         dev-net:
           aliases:
-            - my.gitlab
+            - ec2-3-90-87-4.compute-1.amazonaws.com
     runner:
       image: 'gitlab/gitlab-runner:latest'
       container_name: gitlab-runner
@@ -39,7 +38,7 @@ services:
         - '/var/run/docker.sock:/var/run/docker.sock'
       networks:
         - dev-net
+
 networks:
   dev-net:
-    external:
       name: development
