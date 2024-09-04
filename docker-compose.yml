@@ -1,17 +1,17 @@
 services:
     gitlab:
-      image: 'gitlab/gitlab-ce:latest'
+      image: 'gitlab/gitlab-ee:latest'
       container_name: GitLab
       restart: always
       environment:
         GITLAB_OMNIBUS_CONFIG: |
-          external_url 'https://ec2-3-90-87-4.compute-1.amazonaws.com:3143'
+          external_url 'https://ec2-98-80-249-97.compute-1.amazonaws.com:3143'
           gitlab_rails['gitlab_shell_ssh_port'] = 3122
           nginx['listen_port'] = 443
           nginx['redirect_http_to_https'] = true
           nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
-          registry_external_url 'https://ec2-3-90-87-4.compute-1.amazonaws.com:4567'
+          registry_external_url 'https://ec2-98-80-249-97.compute-1.amazonaws.com:4567'
           registry_nginx['enable'] = true
           registry_nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           registry_nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
