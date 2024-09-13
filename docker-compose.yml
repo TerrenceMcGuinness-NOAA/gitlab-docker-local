@@ -5,20 +5,19 @@ services:
       restart: always
       environment:
         GITLAB_OMNIBUS_CONFIG: |
-          external_url 'https://ec2-3-90-87-4.compute-1.amazonaws.com:3143'
+          external_url 'https://ec2-52-90-68-189.compute-1.amazonaws.com:8080'
           gitlab_rails['gitlab_shell_ssh_port'] = 3122
-          nginx['listen_port'] = 443
+          nginx['listen_port'] = 8080
           nginx['redirect_http_to_https'] = true
           nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
-          registry_external_url 'https://ec2-3-90-87-4.compute-1.amazonaws.com:4567'
+          registry_external_url 'https://ec2-52-90-68-189.compute-1.amazonaws.com:8080'
           registry_nginx['enable'] = true
           registry_nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           registry_nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
           gitlab_rails['backup_keep_time'] = 172800
       ports:
-        - '4567:4567'
-        - '3143:443'
+        - '8080:8080'
         - '3122:22'
       volumes:
         - '/srv/gitlab/config:/etc/gitlab'
