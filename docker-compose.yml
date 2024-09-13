@@ -1,23 +1,23 @@
 services:
     gitlab:
-      image: 'gitlab/gitlab-ee:latest'
+      image: 'gitlab/gitlab-ce:latest'
       container_name: GitLab
       restart: always
       environment:
         GITLAB_OMNIBUS_CONFIG: |
-          external_url 'https://ec2-52-90-68-189.compute-1.amazonaws.com:8080'
+          external_url 'https://ec2-52-90-68-189.compute-1.amazonaws.com:8585'
           gitlab_rails['gitlab_shell_ssh_port'] = 3122
-          nginx['listen_port'] = 8080
+          nginx['listen_port'] = 8585
           nginx['redirect_http_to_https'] = true
           nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
-          registry_external_url 'https://ec2-98-80-249-97.compute-1.amazonaws.com:4567'
+          registry_external_url 'https://ec2-52-90-68-189.compute-1.amazonaws.com:8585'
           registry_nginx['enable'] = true
           registry_nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
           registry_nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
           gitlab_rails['backup_keep_time'] = 172800
       ports:
-        - '8080:8080'
+        - '8585:8585'
         - '3122:22'
       volumes:
         - '/srv/gitlab/config:/etc/gitlab'
@@ -27,7 +27,7 @@ services:
       networks:
         dev-net:
           aliases:
-            - ec2-3-90-87-4.compute-1.amazonaws.com
+            - ec2-52-90-68-189.compute-1.amazonaws.com
     runner:
       image: 'gitlab/gitlab-runner:latest'
       container_name: gitlab-runner
