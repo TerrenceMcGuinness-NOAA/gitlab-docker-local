@@ -12,5 +12,5 @@ newgrp docker
 
 docker compose up -d
 
-#docker exec -it gitlab-ce /bin/bash
+#docker exec -it GitLab /bin/bash
 #cat /etc/gitlab/initial_root_password

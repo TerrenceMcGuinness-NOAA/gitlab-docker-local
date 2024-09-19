@@ -23,4 +23,4 @@ tar -xvf $BACKUP_DIR/*-gitlab-runner.tar -C $RUNNER_DIR
 docker exec -it $RUNNER gitlab-runner restart
 
 # Restart all containers
-docker-compose restart
+docker compose restart
