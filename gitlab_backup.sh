@@ -1,14 +1,15 @@
 #!/bin/bash
 
 CONTAINER="GitLab"
-TARGET_DIR="/contrib/Terry.McGuinness/home/GitLab/BackUpGitLab"
+TARGET_DIR="${HOME}/GitLab/BackUpGitLab"
 GITLAB_DIR="/srv/gitlab"
 RUNNER_DIR="/srv/gitlab-runner"
 REMOVE_DAYS=1
 
 # Backup Application DATA
 echo "Backing up GitLab application data"
-#docker exec -t $CONTAINER gitlab-rake gitlab:backup:create
+docker exec -t $CONTAINER gitlab-rake gitlab:backup:create
+mkdir -p $TARGET_DIR
 cp -u $GITLAB_DIR/data/backups/. $TARGET_DIR/ -a
 
 # Backup configurations, SSH keys, and SSL certs

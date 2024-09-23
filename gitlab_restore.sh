@@ -4,7 +4,7 @@ CONTAINER="GitLab"
 TARGET_DIR="/srv/gitlab"
 RUNNER="gitlab-runner"
 RUNNER_DIR="/srv/gitlab-runner"
-BACKUP_DIR="/contrib/Terry.McGuinness/home/GitLab/BackUpGitLab"
+BACKUP_DIR="${HOME}/GitLab/BackUpGitLab"
 
 # Restore application data
 cp $BACKUP_DIR/*_gitlab_backup.tar $TARGET_DIR/data/backups/
